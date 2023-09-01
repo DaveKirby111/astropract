@@ -1,9 +1,9 @@
 ---
 interface Props {
-  title: string;
+  page: string;
 }
 
-const { title } = Astro.props;
+const { page } = Astro.props;
 
 import Nav from "../components/Nav.astro";
 import "../styles/main.css";
@@ -17,35 +17,65 @@ import "../styles/main.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>Astro Practice</title>
+
+    <script src="../../public/menu.js"></script>
   </head>
 
   <body>
     <div class="flex flex-col min-h-screen">
-      <header>
-        <div class="flex">
-          <h1 class="ms-5">astro practice</h1>
+      <header class="bg-lime">
+        <div class="flex flex-col md:flex-row">
+          <div class="flex">
+            <h1 class="ms-5 font-bold text-2xl">
+              <a href="/">astro practice</a>
+            </h1>
+
+            <div class="cursor-pointer md:hidden ms-auto" id="burger">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+              </svg>
+            </div>
+          </div>
+
           <Nav />
         </div>
+        <h2 class="text-3xl font-rubik md:text-6xl">{page}</h2>
       </header>
 
-      <main class="flex-1">
-        <slot />
+      <main class="flex-1 bg-gray-200">
+        <div class="content p-5">
+          <slot />
+        </div>
       </main>
 
-      <footer>
+      <footer class="bg-lime">
         <p>david kirby</p>
       </footer>
     </div>
   </body>
 </html>
 
-<style is:global>
-  h2 {
-    text-align: center;
+<style>
+  h1 {
+    text-transform: capitalize;
   }
 
   footer {
     text-align: center;
+  }
+
+  footer p {
+    text-transform: capitalize;
   }
 </style>

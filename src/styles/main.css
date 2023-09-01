@@ -1,7 +1,22 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Judson&family=Rubik+Iso&display=swap');
 
-header, nav, main, footer {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* anything with a class of list, apply these classes */
+.list {
+    @apply capitalize list-disc;
+}
+
+
+
+header, nav, main, footer, div {
     border: 2px solid black;
+}
+
+h2 {
+    text-align: center;
+    text-transform: capitalize;
 }
