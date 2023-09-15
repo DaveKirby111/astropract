@@ -1,5 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const updates = await Astro.glob("../content/*.md");
 ---
 
-<Layout page="page 1" />
+<Layout page="page 1">
+  {
+    updates.map((update) => (
+      <div class="updates">
+        <div class="title">
+          <h2>{update.frontmatter.title}</h2>
+          <p class="date">{update.frontmatter.date}</p>
+        </div>
+        <div class="body">
+          <p set:html={update.compiledContent()} />
+        </div>
+      </div>
+    ))
+  }
+</Layout>
+
+<style>
+  h2 {
+    font-size: 30px;
+  }
+
+  .date {
+    font-style: italic;
+  }
+
+  .body {
+    padding: 20px;
+  }
+
+  .date {
+    text-align: center;
+  }
+
+  .title {
+    background-color: black;
+    color: white;
+  }
+
+  .updates {
+    margin-bottom: 20px;
+  }
+</style>
