@@ -1,0 +1,49 @@
+---
+import Layout from "./Layout.astro";
+import { slugify } from "../js/slugify";
+
+const { frontmatter } = Astro.props;
+const { title, image, date, author } = frontmatter;
+---
+
+<Layout page={title}>
+  <header>
+    <div class="post-container">
+      <h2>{title}</h2>
+      <p>by <a href=`/author/${slugify(author)}`>{author}</a> . {date}</p>
+    </div>
+    <img src={image.src} alt={image.alt} />
+  </header>
+  <div class="post-body">
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: blue;
+  }
+
+  header p {
+    text-transform: capitalize;
+    text-align: center;
+  }
+
+  .post-body {
+    padding: 30px;
+  }
+</style>

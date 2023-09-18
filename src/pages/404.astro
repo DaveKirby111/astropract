@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout page="Page Not Found">
+  <div
+    class="container"
+    style={{
+      textTransform: "capitalize",
+    }}
+  >
+    <div
+      style={{
+        textAlign: "center",
+        marginBottom: "20px",
+      }}
+    >
+      <h1
+        style={{
+          color: "red",
+          fontWeight: "bold",
+          fontSize: "50px",
+        }}
+      >
+        error!
+      </h1>
+      <p>There was a glitch in the Matrix</p>
+    </div>
+    <button
+      onclick="
+      window.location.href = '/'
+      "
+      style={{
+        backgroundColor: "gray",
+        padding: "10px",
+        width: "200px",
+      }}>Go Home</button
+    >
+  </div>
+</Layout>
+
+<style>
+  button {
+    display: block;
+    margin: auto;
+  }
+
+  button:hover {
+    background-color: darkgray !important;
+  }
+</style>
