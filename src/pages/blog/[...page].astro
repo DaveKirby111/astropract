@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import { formatBlogPosts } from "../../js/blog";
+import Pagination from "../../components/pagination.astro";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: (data: any[], options: { pageSize: number }) => any[];
+}) {
+  const allPosts = await Astro.glob("./*.md");
+  const formattedPosts = formatBlogPosts(allPosts);
+
+  return paginate(allPosts, {
+    pageSize: 2,
+  });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout page="Blog">
+  <div class="posts">
+    {
+      page.data.map(
+        (post: {
+          frontmatter: {
+            title: unknown;
+            slug: any;
+            image: {
+              src: string | null | undefined;
+              alt: string | null | undefined;
+            };
+          };
+        }) => (
+          <div class="post">
+            <h2>{post.frontmatter.title}</h2>
+            <a href={`/blog/${post.frontmatter.slug}`}>
+              <img
+                src={post.frontmatter.image.src}
+                alt={post.frontmatter.image.alt}
+              />
+            </a>
+          </div>
+        )
+      )
+    }
+  </div>
+  <div class="paginate">
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </div>
+</Layout>
+
+<style>
+  .post {
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+
+  img {
+    margin-bottom: 20px;
+  }
+
+  .post:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-size: 50px;
+    font-weight: bold;
+  }
+</style>

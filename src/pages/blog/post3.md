@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogLayout.astro"
+slug: post3
 title: Post 3
 date: Sept. 2023
 author: david kirby

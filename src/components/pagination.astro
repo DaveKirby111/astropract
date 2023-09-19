@@ -1,0 +1,36 @@
+---
+const { prevUrl, nextUrl } = Astro.props;
+---
+
+<nav aria-label="Blog pages" class="flex">
+  {
+    prevUrl && (
+      <a href={prevUrl} class="prev">
+        Previous
+      </a>
+    )
+  }
+
+  {
+    nextUrl && (
+      <a href={nextUrl} class="next ms-auto">
+        Next
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  a {
+    border: 2px solid black;
+    background-color: rgb(27, 99, 255);
+    width: 90px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  a:hover {
+    color: black;
+    font-weight: bold;
+  }
+</style>
